@@ -1,0 +1,365 @@
+---
+title: "Aula 2"
+author: "Carolene Bertoldi"
+date: "2 de junho de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercício de revisão – Aula 01 A
+
+Criar 6 vetores:
+
+1. Vetor *a*𝑎 de inteiros com 5 números:
+   Número da matrícula na FIAP (sem letras)
+   Data de nascimento, formato yyyyMMdd
+   3 últimos dígitos do seu CPF
+   6 primeiros dígitos do RG
+   4 dígitos da placa do carro (pode inventar)
+
+2. Vetor *b*𝑏 com o dobro do vetor 𝑎
+
+3. Vetor *c* com $\frac{b}{3}$
+
+4. Vetor *d* com $c + a^2$
+
+5. Vetor *e* com $\sqrt{d}$
+
+6. Criar vetor *ai* com o inverso de *a*
+
+```{r exercicio1}
+a = c(330509, 19910802, 523, 587817, 1234)
+
+b = a * 2
+
+c = b / 3
+
+d = c + a**2
+
+e = sqrt(d)
+
+ai = a[5:1]
+```
+
+## Exercício de revisão – Aula 01 B
+
+Criar matrizes:
+
+𝑀1. *M1* 6×5 com cada linha contendo o valor de um dos vetores
+𝑀2. *M2* 5×6 com cada coluna contendo o valor de um dos vetores
+𝑀3. *M3* 6×5 com cada elemento contendo 10% de 𝑀1 , ou seja, *M1* × 0,1
+4.  Criar matriz *M4* 5×6 sendo uma tabela com 5 linhas e 6 colunas quaisquer de *attitude*
+
+```{r exercicio2}
+M1 = matrix(c(a ,b ,c ,d ,e , ai), nrow = 6, byrow = T)
+
+M2 = matrix(c(a ,b ,c ,d ,e , ai), nrow = 5)
+
+M3 = M1 * 0.1
+
+M4 = as.matrix(attitude[25:29, 2:7])
+```
+
+
+## Exercícios de soma e subtração em matrizes
+
+1. Criar matriz (in memory) 19x19 com os valores 1 e 2 nos elementos, alternadamente.
+2. Somar 1 para cada elemento da linha 1, 2 na linha 2,... e 19 na linha 19.
+3. Somar 1 para cada elemento da linha 1, 2 na linha 2,... e 19 na linha 19.
+
+```{r exercicio3}
+M19 = matrix(1:2, nrow = 19, ncol = 19)
+
+M19_1 = M19 - 1
+
+M19_2 = M19 + 1:19
+```
+
+## Exercício multiplicação de matrizes
+
+1. *M5* com cada elemento sendo a a multiplicação do elemento equivalente das matrizez *M1* e *M3*. 2. *M6* com cada elemento sendo a a multiplicação do elemento equivalente das matrizez *M3* e *M1*.
+3. Criar matriz *M7* com a multiplicação das matrizes *M1* e *M4*.
+4. Criar matriz *M8* com a multiplicação das matrizes *M4* e *M1*.
+
+```{r exercicio4}
+M5 = M1 * M3
+M6 = M3 * M1
+M7 = M1 %*% M4
+M8 = M4 %*% M1
+
+M5 == M6
+#M7 == M8
+```
+
+### Resposta para as comparações entre as matrizes M5 e M6, e as matrizes M7 e M8.
+
+As matrizes **M5** e **M6** são matrizes idênticas pois foram geradas a partir da multiplicação dos elementos da primeira matrizes pelo elemento na posição equivalente na segunda matriz, e neste caso a multiplicação é comutativa.
+Já as matrizes **M7** e **M8** foram geradas a partir da multiplicação de matrizes que segue uma regra particular em que cada elemento é gerado pelo somada dos produtos dos elementos de cada linha da primeira matriz pela coluna da segunda matriz, gerando uma matriz resultante com numero de linhas da primeira matriz e o número de colunas da segunda. E como a multiplicação de matrizes não é comutativa, foram geradas a **M7** com 6 linhas e 6 colunas e **M8** com 5 linhas e 5 colunas. Portanto matrizes com estruturas diferentes impossível de ser comparadas.
+
+## Exercício matriz transposta
+
+1. Obter a transposta *M1T*𝑇 a *M8T*𝑇 de cada uma das matrizes *M1* a *M8*
+2. Comparar a multiplicação
+   *M8* X *M8T*
+   *M8T* X *M8*
+
+```{r exercicio5}
+
+M1T = t(M1)
+M2T = t(M2)
+M3T = t(M3)
+M4T = t(M4)
+M5T = t(M5)
+M6T = t(M6)
+M7T = t(M7)
+M8T = t(M8)
+
+M8 %*% M8T == M8T %*% M8
+```
+### Resposta para as comparações entre as multiplicações da matriz M8 pela sua transposta e vice-versa.
+
+Neste caso foi possível comparar as multiplicações pois a M8 possui o mesmo numero de linhas e colunas, e logicamente sua transposta também. Porém na comparação dos elementos gerados podemos perceber que foram obtidos resultados diferentes nas operações de multiplicação de matrizes, evidênciando novamente a sua não comutatividade.
+
+## Exercício malvadão com matrizes
+
+Obter o valor da matriz X na equação:
+  AX = B
+  onde,
+  `A = as.matrix( attitude[21:25, 1:5] )`
+  `B = as.matrix( attitude[11:15, 1:5] )`
+  
+```{r exercicio6}
+A = as.matrix( attitude[21:25, 1:5] )
+B = as.matrix( attitude[11:15, 1:5] )
+
+X = solve(A) %*% B
+```
+  
+### Explicação da resposta
+
+Em matrizes a multiplicação de uma matriz pela sua inversa resulta em uma matriz denominada matriz identidade **I**, que  é considerada um elemento neutro em operações entre matrizes, como número 0 é para a adição e o número 1 é para a multiplicação. 
+Assim sendo se multiplicarmos ambos os termos da equação pela inversa de A, teriamos, anulariamos A no primeiro termo e obtemos X através da multiplicaçã matricial entre a inversa de A e B.
+
+## Exercícios RMarkdown - 01
+
+Criar um arquivo .Rmd
+Configurar output para html ou notebook (que é html)
+
+1. Chunk com todo o conteúdo da tabela ‘cars’
+2. Chunk com 5 primeiras linhas da tabela ‘cars’
+3. Chunk com 5 últimas linhas da tabela ‘cars’
+4. Chunk com o resumo da tabela ‘cars’
+5. Chunk com plot simples da tabela ‘cars’
+6. Texto explicativo antes de cada chunk
+  
+Exibindo dados do dataset *cars*
+```{r exercicio71}
+cars
+```
+
+Exibindo primeiras cinco linhas do dataset *cars*
+```{r exercicio72}
+head(cars, 5)
+```
+
+Exibindo últimas cinco linhas do dataset *cars*
+```{r exercicio73}
+tail(cars, 5)
+```
+
+Resumo sobre o dataset *cars*
+```{r exercicio74}
+summary(cars)
+```
+
+Plot do dataset *cars*
+```{r exercicio75}
+plot(cars)
+```
+
+## Exercícios sobre Special Values
+
+1. Criar 5 variáveis. Cada uma com um tipo dos valores especiais (+Inf e –Inf)
+2. Tentar criar um vetor com as 5 variáveis.
+   Foi possível?
+3. Verificar os valores das variáveis e vetor através das funções
+
+```{r exercicio8}
+v1 = NA
+v2 = NaN
+v3 = NULL
+v4 = Inf
+v5 = -Inf
+
+vall = c(v1, v2, v3, v4, v5)
+
+#V1
+is.na(v1)
+is.nan(v1)
+is.null(v1)
+is.infinite(v1)
+is.finite(v1)
+
+#V2
+is.na(v2)
+is.nan(v2)
+is.null(v2)
+is.infinite(v2)
+is.finite(v2)
+
+#V3
+is.na(v3)
+is.nan(v3)
+is.null(v3)
+is.infinite(v3)
+is.finite(v3)
+
+#V4
+is.na(v4)
+is.nan(v4)
+is.null(v4)
+is.infinite(v4)
+is.finite(v4)
+
+#V5
+is.na(v5)
+is.nan(v5)
+is.null(v5)
+is.infinite(v5)
+is.finite(v5)
+
+#Vall
+is.na(vall)
+is.nan(vall)
+is.null(vall)
+is.infinite(vall)
+is.finite(vall)
+```
+ 
+Sim, é possivel criar um vetor com valores especiais.
+Pelas funções de verificação de tipos especiais é possível identificar a qual tipo especial a variável se aplica e quando excutadas com uma variavel que é um vetor a função retorma a verificação de todos os elementos do vetor.
+ 
+## Experimento com Data e Hora
+
+Façam o seguinte experiento, analizem e comentem o resultado:
+
+```{r exercicio9}
+
+dia_texto <- "28/09/2017 T 18:51:30"
+dia_date <- as.Date(dia_texto,format="%d/%m/%Y T %H:%M:%S",tz="America/Sao_Paulo")
+dia.time1 <- as.POSIXct(dia_texto,format="%d/%m/%Y T %H:%M:%S",tz="America/Sao_Paulo")
+dia.time2 <- as.POSIXlt(dia_texto,format="%d/%m/%Y T %H:%M:%S",tz="America/Sao_Paulo")
+
+dia_date
+dia.time1
+dia.time2
+
+unclass(dia_date)
+unclass(dia.time1)
+unclass(dia.time2)
+#dia.time1$year
+dia.time2$year
+```
+
+**O que a função “unclass’ faz?**
+Ela faz uma cópia do objeto retirando seu atributo de classe e permitindo assim que seja exibido todos os atributos que compoe o objeto e não sua impressão defaut.
+
+**Qual a diferença entre os objetos dia.time1 e dia.time2?**
+O objeto dia.time1 foi construido a classe POSIXct que cria uma data armazenando apenas a quantidade de segundos do dia 01/01/1970 até a data desejada. Já o dia.time2 foi construida com a classe POSIXlt que lista informações detalhadas de uma data como ano, mês, dia, hora. minuto...
+A classe POSIXct é mais utilizada por ocupar mesmo espaço na memória.
+
+## Exercícios Lubridate
+
+Lubridate é um pacote específico para manipulação de datas muito utilizado pelos cientistas de dados devido a facilidades que proporciona para tratamento de variaveis relacionadas ao tempo.
+
+```{r lubridate}
+#install.packages("lubridate")
+library("lubridate")
+```
+
+1. Criar uma duration com 260 segundos
+2. Criar uma duration com 260 minutos e divida-a por 60
+3. Criar uma duration de 1 dia e subtraia uma duration de 60 minutos
+4. Criar uma duration de 12 dias, 5 horas e 10 minutos
+
+```{r exercicio10}
+d260s = dseconds(x = 260)
+d260m = dminutes(x = 260)/60
+d1d = ddays(x = 1) - dminutes(x = 60)
+#a quarta questão pode ser feita por soma
+d12dhm = ddays(x = 12) + dhours(x = 5) + dminutes(x = 10)
+#ou com uma única duration com todos os dados
+d12dhm2 = duration(day = 12, hour = 5, minute = 10)
+```
+5. Calcular a Black Friday de 2018:
+
+   O Black Friday acontece 1 dias depois do dia de ação de graças americadno, que é celebrado na quarta quinta-feira de novembro.
+   
+   - Crie uma variável representando 1-nov-2018
+   - Verifique que dia da semana é 1-nov
+   - Adicione a quantidade necessária para chegar na quinta feira e adicione em uma segunda variável
+   - Adicione 3 semanas.
+   - Testar para 2019, 2020 e 2021
+   
+```{r exercicio11}
+
+bf = function(ano) {
+  nov01 = dmy(paste("01", "11", ano, sep = "/"))
+  wday(nov01)
+  black.friday = nov01
+  while(wday(black.friday) != 5) {
+    black.friday = black.friday + ddays(x = 1)
+  }
+  black.friday = black.friday + dweeks(x = 3) + ddays(x = 1)
+  black.friday
+}
+
+black.friday.2018 = bf(2018)
+black.friday.2018
+
+black.friday.2019 = bf(2019)
+black.friday.2019
+
+black.friday.2020 = bf(2020)
+black.friday.2020
+
+black.friday.2021 = bf(2021)
+black.friday.2021
+```
+
+## Exercícios com seqüencias
+
+**1. Crie uma variável my_seq com 30 valores entre 5 e 10**
+```{r}
+my_seq = seq(5, 10, length.out = 30)
+```
+
+**2. Veja o help da função `:`**
+Segundo o help, a função ":" é equivalente a interseção entre dois números, ou seja from:to = seq(from, to)
+
+**3. Qual a diferença das instruções**
+    pi:10
+    10:pi
+`pi:10` gera um vetor com números com casas decimais em ordem crescente entre pi e 10. Neste caso o tamanho do vetor é igual ao limite superior, no caso 10.
+
+`10:pi` gera um vetor de números inteiros com 7 posições em ordem decrescente. Ou seja, o tamanho do vetor neste caso é igual a diferença entre o número inicial e o final, desconsiderando as casas decimais.
+
+**4. Como consultar o tamanho do vetor my_seq**
+A função length pode ser usada para checar o tamanho de um vetor
+```{r exercicio12}
+length(my_seq)
+```
+
+**5. Como fazer uma sequencia que acompanhe o tamanho do vetor my_seq?**
+Uma sequência que acompanhe o tamanho de um vetor pode ser criada de duas maneiras, utilizando o paramêtro `along.with` na função `seq` ou utilizando a função `seq_along`. As duas formas trarão o mesmo resultado como evidênciado abaixo. 
+
+```{r exercicio13}
+seq1 = seq(along.with = my_seq)
+seq1
+
+seq2 = seq_along(my_seq)
+seq2
+```
