@@ -6,7 +6,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Explorando o R - Conceitos básicos
+## Conceitos básicos
 
 ### Exercício 01
 

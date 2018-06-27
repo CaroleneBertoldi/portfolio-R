@@ -1,0 +1,155 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Matrizes
+
+>Objetivos dos exercícios 1 e 2:
+Revisar possibilidades criação de vetores e matrizes.
+
+### Exercício 01 - Revisão de vetores
+
+####Instrções:
+
+Criar 6 vetores:
+
+1. Vetor *a* de inteiros com 5 números:
+   Número da matrícula na FIAP (sem letras)
+   Data de nascimento, formato yyyyMMdd
+   3 últimos dígitos do seu CPF
+   6 primeiros dígitos do RG
+   4 dígitos da placa do carro (pode inventar)
+
+2. Vetor *b* com o dobro do vetor *a*
+
+3. Vetor *c* com $\frac{b}{3}$
+
+4. Vetor *d* com $c + a^2$
+
+5. Vetor *e* com $\sqrt{d}$
+
+6. Criar vetor *ai* com o inverso de *a*
+
+```{r exercicio1}
+a = c(330509, 19910802, 523, 587817, 1234)
+
+b = a * 2
+
+c = b / 3
+
+d = c + a**2
+
+e = sqrt(d)
+
+ai = a[5:1]
+```
+
+### Exercício 02 - Revisão de matrizes
+
+####Instrções:
+
+Criar matrizes:
+
+ð1. *M1* 6Ã5 com cada linha contendo o valor de um dos vetores
+ð2. *M2* 5Ã6 com cada coluna contendo o valor de um dos vetores
+ð3. *M3* 6Ã5 com cada elemento contendo 10% de ð1 , ou seja, *M1* Ã 0,1
+4.  Criar matriz *M4* 5Ã6 sendo uma tabela com 5 linhas e 6 colunas quaisquer de *attitude*
+
+```{r exercicio2}
+M1 = matrix(c(a ,b ,c ,d ,e , ai), nrow = 6, byrow = T)
+
+M2 = matrix(c(a ,b ,c ,d ,e , ai), nrow = 5)
+
+M3 = M1 * 0.1
+
+M4 = as.matrix(attitude[25:29, 2:7])
+```
+
+
+>Objetivos dos próximos exercícios:
+Explorar operações com matrizes
+
+### Exercício 03 - Operações de soma e subtração em matrizes
+
+####Instrções:
+
+1. Criar matriz (in memory) 19x19 com os valores 1 e 2 nos elementos, alternadamente.
+2. Somar 1 para cada elemento da linha 1, 2 na linha 2,... e 19 na linha 19.
+3. Somar 1 para cada elemento da linha 1, 2 na linha 2,... e 19 na linha 19.
+
+```{r exercicio3}
+M19 = matrix(1:2, nrow = 19, ncol = 19)
+
+M19_1 = M19 - 1
+
+M19_2 = M19 + 1:19
+```
+
+### Exercício 04 - Multiplicação de matrizes
+
+####Instrções:
+
+1. *M5* com cada elemento sendo a a multiplicação do elemento equivalente das matrizez *M1* e *M3*. 2. *M6* com cada elemento sendo a a multiplicação do elemento equivalente das matrizez *M3* e *M1*.
+3. Criar matriz *M7* com a multiplicação das matrizes *M1* e *M4*.
+4. Criar matriz *M8* com a multiplicação das matrizes *M4* e *M1*.
+
+```{r exercicio4}
+M5 = M1 * M3
+M6 = M3 * M1
+M7 = M1 %*% M4
+M8 = M4 %*% M1
+
+M5 == M6
+#M7 == M8
+```
+
+>Resposta para as comparações entre as matrizes M5 e M6, e as matrizes M7 e M8.
+As matrizes **M5** e **M6** são matrizes idênticas pois foram geradas a partir da multiplicação dos elementos da primeira matrizes pelo elemento na posição equivalente na segunda matriz, e neste caso a multiplicação é comutativa.
+Já as matrizes **M7** e **M8** foram geradas a partir da multiplicação de matrizes que segue uma regra particular em que cada elemento é gerado pelo somada dos produtos dos elementos de cada linha da primeira matriz pela coluna da segunda matriz, gerando uma matriz resultante com numero de linhas da primeira matriz e o número de colunas da segunda. E como a multiplicação de matrizes não é comutativa, foram geradas a **M7** com 6 linhas e 6 colunas e **M8** com 5 linhas e 5 colunas. Portanto matrizes com estruturas diferentes impossível de ser comparadas.
+
+### Exercício 05 - Matrizes transpostas
+
+1. Obter a transposta *M1T* e a *M8T* de cada uma das matrizes *M1* a *M8*
+2. Comparar a multiplicação
+   *M8* X *M8T*
+   *M8T* X *M8*
+
+```{r exercicio5}
+
+M1T = t(M1)
+M2T = t(M2)
+M3T = t(M3)
+M4T = t(M4)
+M5T = t(M5)
+M6T = t(M6)
+M7T = t(M7)
+M8T = t(M8)
+
+M8 %*% M8T == M8T %*% M8
+```
+
+>Resposta para as comparações entre as multiplicações da matriz M8 pela sua transposta e vice-versa.
+Neste caso foi possível comparar as multiplicações pois a M8 possui o mesmo numero de linhas e colunas, e logicamente sua transposta também. Porém na comparação dos elementos gerados podemos perceber que foram obtidos resultados diferentes nas operações de multiplicação de matrizes, evidenciando novamente a sua nÃ£o comutatividade.
+
+### Exercício malvadão com matrizes
+
+Obter o valor da matriz X na equação:
+  AX = B
+  onde,
+  `A = as.matrix( attitude[21:25, 1:5] )`
+  `B = as.matrix( attitude[11:15, 1:5] )`
+  
+```{r exercicio6}
+A = as.matrix( attitude[21:25, 1:5] )
+B = as.matrix( attitude[11:15, 1:5] )
+
+X = solve(A) %*% B
+```
+
+>Explicação da resposta
+Em matrizes a multiplicação de uma matriz pela sua inversa resulta em uma matriz denominada matriz identidade **I**, que é considerada um elemento neutro em operações entre matrizes, como número 0 é para a adição e o número 1 é para a multiplicação. 
+Assim sendo se multiplicarmos ambos os termos da equação pela inversa de A, teriamos, anulariamos A no primeiro termo e obtemos X através da multiplicação matricial entre a inversa de A e B.

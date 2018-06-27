@@ -16,9 +16,13 @@ sidebar = dashboardSidebar(
              icon = icon('line-chart'), 
              tabName="aula01"
     ),
-    menuItem("Aula 02", 
+    menuItem("Matrizes", 
              icon = icon('line-chart'),
              tabName="aula02-01"
+    ),
+    menuItem("Explorando um dataset", 
+             icon = icon('line-chart'),
+             tabName="aula02-02"
     ),
     menuItem("Aula 03", 
              icon = icon('line-chart'),
@@ -41,7 +45,10 @@ body = dashboardBody(
             includeHTML("Aula01.html")
     ),
     tabItem(tabName = "aula02-01",
-            includeHTML("Aula02.html")
+            includeHTML("Aula02-01.html")
+    ),
+    tabItem(tabName = "aula02-02",
+            includeHTML("Aula02-02.html")
     ),
     tabItem(tabName = "aula03-01",
             includeHTML("Aula03.html")
@@ -50,6 +57,9 @@ body = dashboardBody(
 )
 
 dashboardPage(header = dashboardHeader(title = "Portfólio R"),
+              tags$head(
+                tags$link(rel = "stylesheet", type = "text/css", href = "style.css")
+              ),
               skin = "purple",
               sidebar = sidebar,
               body = body)

@@ -1,0 +1,46 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Explorando o dataset cars
+  
+1. Exibindo dados do dataset *cars*
+
+Para verificar todos os dados de um dataset basta rodar a variavel que o contém.
+```{r exercicio71}
+cars
+```
+
+2.Exibindo primeiras cinco linhas do dataset *cars*.
+
+Para isso é utilizada a função `head`, passando o datset e o número de linhas a ser exibido por parâmetro.
+```{r exercicio72}
+head(cars, 5)
+```
+
+3. Exibindo útimas cinco linhas do dataset *cars* utilizando a função `tail`.
+
+Forma de utilização muito parecida com a `head` porém aplicada as últimas linhas do dataset.
+```{r exercicio73}
+tail(cars, 5)
+```
+
+4.Resumo sobre o dataset *cars*.
+
+Com a função `summary` é possível verificar alguns dados importantes sobre o dataset: média, mediana, primeiro e segundo quartil.
+```{r exercicio74}
+summary(cars)
+```
+
+5. Plot do dataset *cars*.
+
+E com a função `plot` é possível verificar uma representação gráfica do dataset.
+O gráfico abaixo por exemplo exibe a relação entre velocidade e distancia, que são os atributos do dataset cars.
+
+```{r exercicio75}
+plot(cars)
+```
