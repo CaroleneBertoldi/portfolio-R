@@ -3,7 +3,7 @@ library(shinydashboard)
 
 sidebar = dashboardSidebar(
   sidebarMenu(
-    menuItem("Capa", 
+    menuItem("Home", 
              tabName="home", 
              icon=icon("home")
     ),
@@ -24,9 +24,17 @@ sidebar = dashboardSidebar(
              icon = icon('line-chart'),
              tabName="aula02-02"
     ),
-    menuItem("Aula 03", 
+    menuItem("Special Values", 
              icon = icon('line-chart'),
-             tabName="aula03-01"
+             tabName="aula02-03"
+    ),
+    menuItem("Data e hora", 
+             icon = icon('line-chart'),
+             tabName="aula02-04"
+    ),
+    menuItem("SequÃªncias", 
+             icon = icon('line-chart'),
+             tabName="aula02-05"
     )
   )
 )
@@ -34,24 +42,28 @@ sidebar = dashboardSidebar(
 body = dashboardBody(
   tabItems(
     tabItem(tabName = "home",
-            h2("PÃ¡gina inicial"),
-            h4("Fazer uma capa bonitinha ..."),
-            h5("O que eu aprendi nas aulas de R")
+            includeHTML("www/Home.html")
     ),
     tabItem(tabName = "aluno",
-            h4("Falar um pouco sobre o aluno / Grupo")
+            includeHTML("www/Sobre-o-aluno.html")
     ),
     tabItem(tabName = "aula01",
-            includeHTML("Aula01.html")
+            includeHTML("www/Aula01.html")
     ),
     tabItem(tabName = "aula02-01",
-            includeHTML("Aula02-01.html")
+            includeHTML("www/Aula02-01.html")
     ),
     tabItem(tabName = "aula02-02",
-            includeHTML("Aula02-02.html")
+            includeHTML("www/Aula02-02.html")
     ),
-    tabItem(tabName = "aula03-01",
-            includeHTML("Aula03.html")
+    tabItem(tabName = "aula02-03",
+            includeHTML("www/Aula02-03.html")
+    ),
+    tabItem(tabName = "aula02-04",
+            includeHTML("www/Aula02-04.html")
+    ),
+    tabItem(tabName = "aula02-05",
+            includeHTML("www/Aula02-05.html")
     )
   )
 )

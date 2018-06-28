@@ -1,0 +1,45 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercícios com sequências
+
+####Objetivo:
+Ecplorar uma estrutura de dados em R denominada sequência.
+
+####Instruções:
+**1. Crie uma variável my_seq com 30 valores entre 5 e 10**
+```{r}
+my_seq = seq(5, 10, length.out = 30)
+```
+
+**2. Veja o help da função `:`**
+Segundo o help, a função ":" é equivalente a interseção entre dois números, ou seja from:to = seq(from, to)
+
+**3. Qual a diferença das instruções**
+    pi:10
+    10:pi
+`pi:10` gera um vetor com números com casas decimais em ordem crescente entre pi e 10. Neste caso o tamanho do vetor é igual ao limite superior, no caso 10.
+
+`10:pi` gera um vetor de números inteiros com 7 posições em ordem decrescente. Ou seja, o tamanho do vetor neste caso é igual a diferença entre o número inicial e o final, desconsiderando as casas decimais.
+
+**4. Como consultar o tamanho do vetor my_seq**
+A função length pode ser usada para checar o tamanho de um vetor
+```{r exercicio12}
+length(my_seq)
+```
+
+**5. Como fazer uma sequencia que acompanhe o tamanho do vetor my_seq?**
+Uma sequência que acompanhe o tamanho de um vetor pode ser criada de duas maneiras, utilizando o parâmetro `along.with` na função `seq` ou utilizando a função `seq_along`. As duas formas trarão o mesmo resultado como evidenciado abaixo. 
+
+```{r exercicio13}
+seq1 = seq(along.with = my_seq)
+seq1
+
+seq2 = seq_along(my_seq)
+seq2
+```

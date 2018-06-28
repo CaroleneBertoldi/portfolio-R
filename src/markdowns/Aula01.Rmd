@@ -6,23 +6,23 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Conceitos bÃ¡sicos
+## Conceitos básicos
 
-### ExercÃ­cio 01
+### Salvando variáveis
 
 ####Objetivo:
-ExercÃ­cio bÃ¡sico para salvar variveis de memÃ³ria em um arquivo de texto.
+Exercício básico para salvar variveis de memória em um arquivo de texto.
 
-####InstruÃ§Ãµes:
-Crie 10 variÃ¡veis em memÃ³ria.
-Salvar as 10 variÃ¡veis em arquivo a ser escolhido.
-Para escolher o arquivo de destino, use a funÃ§Ã£o `choose.files()`
-
-
-> Obs. Um arquivo txt vazio deverÃ¡ ser criado anteriormente e apenas selecionado no momento de rodar o bloco de cÃ³digo, conforme figura abaixo.
+####Instruções:
+Crie 10 variáveis em memória.
+Salvar as 10 variáveis em arquivo a ser escolhido.
+Para escolher o arquivo de destino, use a função `choose.files()`
 
 
-![Exemplo de arquivo sendo selecionado](./exemplo-arquivo-sendo-selecionado.png)
+> Obs. Um arquivo txt vazio deverá ser criado anteriormente e apenas selecionado no momento de rodar o bloco de código, conforme figura abaixo.
+
+
+![Exemplo de arquivo sendo selecionado](./img/exemplo-arquivo-sendo-selecionado.png)
 
 ```{r exercio01}
 var1 = 1
@@ -41,14 +41,14 @@ arquivo = choose.files()
 save(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, file=arquivo)
 ```
 
-### ExercÃ­cio 02
+### Instalando pacotes
 
 ####Objetivo:
 Apresentar os pacotes R mais utilizados e como instala-los e deixa-los disponiveis.
 
-####InstruÃ§Ãµes:
+####Instruções:
 Instalar e deixar pacotes abaixo.
-Use funÃ§Ã£o `install.packages` para instalaÃ§Ã£o e `library` para deixar o pacote habilitado para uso emseu workspace.
+Use função `install.packages` para instalação e `library` para deixar o pacote habilitado para uso emseu workspace.
 
 ```
 install.packages("stringr")
@@ -98,15 +98,15 @@ library(curl)
 library(visNetwork)
 ```
 
-### ExercÃ­cio 03
+### Tipos de variáveis
 
 ####Objetivo:
 
 Explorar os tipos de variaveis existentes na linguagem R.
 
-####InstruÃ§Ãµes:
+####Instruções:
 
-1. Criar 1 vetor com exatamente 4 elementos para cada tipo de dado: LÃ³gico, Inteiro, NumÃ©rico, Texto, ImaginÃ¡rio
+1. Criar 1 vetor com exatamente 4 elementos para cada tipo de dado: Lógico, Inteiro, Numérico, Texto, Imaginário
 
 ```{r exercio03.1}
 
@@ -133,8 +133,8 @@ lista = list(vetorLogico, vetorInteiro, vetorNumerico, vetorTexto, vetorImaginar
 matriz = array(1:16 * 2, dim = c(4,4))
 ```
 
-4. Criar um data.frame em que cada coluna Ã© um dos vetores criados neste exercÃ­cio.
-Nomear as colunas (a seu critÃ©rio)
+4. Criar um data.frame em que cada coluna é um dos vetores criados neste exercício.
+Nomear as colunas (a seu critério)
 Nomear as linhas com "L1, L2, L3 e L4"
 
 ```{r exercio03.4}

@@ -1,0 +1,100 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Manipulando data e hora
+
+####Objetivo:
+Demostrar como é possível realizar manipulação de dados de data e hora em R nativamente, e as facilidades da biblioteca Lubridate.
+
+## Experimento com Data e Hora
+
+Façam o seguinte experiento, analizem e comentem o resultado:
+
+```{r exercicio9}
+
+dia_texto <- "28/09/2017 T 18:51:30"
+dia_date <- as.Date(dia_texto,format="%d/%m/%Y T %H:%M:%S",tz="America/Sao_Paulo")
+dia.time1 <- as.POSIXct(dia_texto,format="%d/%m/%Y T %H:%M:%S",tz="America/Sao_Paulo")
+dia.time2 <- as.POSIXlt(dia_texto,format="%d/%m/%Y T %H:%M:%S",tz="America/Sao_Paulo")
+
+dia_date
+dia.time1
+dia.time2
+
+unclass(dia_date)
+unclass(dia.time1)
+unclass(dia.time2)
+#dia.time1$year
+dia.time2$year
+```
+
+**O que a função unclass faz?**
+Ela faz uma cópia do objeto retirando seu atributo de classe e permitindo assim que seja exibido todos os atributos que compoe o objeto e não sua impressão defaut.
+
+**Qual a diferença entre os objetos dia.time1 e dia.time2?**
+O objeto dia.time1 foi construido a classe POSIXct que cria uma data armazenando apenas a quantidade de segundos do dia 01/01/1970 até a data desejada. JÃ¡ o dia.time2 foi construida com a classe POSIXlt que lista informaçÃƒÂµes detalhadas de uma data como ano, mês, dia, hora. minuto...
+A classe POSIXct é mais utilizada por ocupar mesmo espaço na memória.
+
+## Exercícios Lubridate
+
+Lubridate é um pacote específico para manipulação de datas muito utilizado pelos cientistas de dados devido a facilidades que proporciona para tratamento de variaveis relacionadas ao tempo.
+
+```{r lubridate}
+#install.packages("lubridate")
+library("lubridate")
+```
+
+1. Criar uma duration com 260 segundos
+2. Criar uma duration com 260 minutos e divida-a por 60
+3. Criar uma duration de 1 dia e subtraia uma duration de 60 minutos
+4. Criar uma duration de 12 dias, 5 horas e 10 minutos
+
+```{r exercicio10}
+d260s = dseconds(x = 260)
+d260m = dminutes(x = 260)/60
+d1d = ddays(x = 1) - dminutes(x = 60)
+#a quarta questão pode ser feita por soma
+d12dhm = ddays(x = 12) + dhours(x = 5) + dminutes(x = 10)
+#ou com uma ÃƒÂºnica duration com todos os dados
+d12dhm2 = duration(day = 12, hour = 5, minute = 10)
+```
+5. Calcular a Black Friday de 2018:
+
+   O Black Friday acontece 1 dias depois do dia de ação de graças americadno, que é celebrado na quarta quinta-feira de novembro.
+   
+   - Crie uma variÃ¡vel representando 1-nov-2018
+   - Verifique que dia da semana é 1-nov
+   - Adicione a quantidade necessÃ¡ria para chegar na quinta feira e adicione em uma segunda variÃ¡vel
+   - Adicione 3 semanas.
+   - Testar para 2019, 2020 e 2021
+   
+```{r exercicio11}
+
+bf = function(ano) {
+  nov01 = dmy(paste("01", "11", ano, sep = "/"))
+  wday(nov01)
+  black.friday = nov01
+  while(wday(black.friday) != 5) {
+    black.friday = black.friday + ddays(x = 1)
+  }
+  black.friday = black.friday + dweeks(x = 3) + ddays(x = 1)
+  black.friday
+}
+
+black.friday.2018 = bf(2018)
+black.friday.2018
+
+black.friday.2019 = bf(2019)
+black.friday.2019
+
+black.friday.2020 = bf(2020)
+black.friday.2020
+
+black.friday.2021 = bf(2021)
+black.friday.2021
+```

@@ -1,5 +1,33 @@
-.main-header .logo {
-  font-family: "Georgia", Times, "Times New Roman", serif;
-  font-weight: bold;
-  font-size: 24px;
+h1 {
+	font-family: 'Lobster', cursive;
+	font-weight: 500;
+	line-height: 1.1;
+	color: #48ca3b;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 40px;
+}
+
+h4 {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+/* Won't be used here */
+
+h5 {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+h6 {
+    font-size: 12px;
+    line-height: 20px;
 }

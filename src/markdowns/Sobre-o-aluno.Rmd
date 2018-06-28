@@ -1,0 +1,15 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](./img/eu.jpg)
+
+# Carolene Bertoldi
+
+Desenvolvedora com skils predominantemente back end, perfil generalista e motivada por desafios e necessidade de aprendizado. 
+5 anos de experiência com Java, sempre aplicado a boas práticas, incluindo técnicas de Design Patterns e testes automáticos. 1 ano de experiência com Node Js e desenvolvimento de chatbots utilizando a plataforma IBM Watson, e 1 ano de experiência com Scala e Angular 2. 
+Atualmente vivendo uma fase de especialização na carreira através do curso de pós graduação em Inteligência Artificial e Machine Learning pela FIAP e trilha de cursos que compõe a formação de Engenheiro de Machine Learning pela Udacity.
