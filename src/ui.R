@@ -47,6 +47,10 @@ sidebar = dashboardSidebar(
     menuItem("Environments", 
              icon = icon('line-chart'),
              tabName="aula03-03"
+    ),
+    menuItem("Leitura de arquivos", 
+             icon = icon('line-chart'),
+             tabName="aula04-01"
     )
   )
 )
@@ -85,6 +89,9 @@ body = dashboardBody(
     ),
     tabItem(tabName = "aula03-03",
             includeHTML("www/Aula03-03.html")
+    ),
+    tabItem(tabName = "aula04-01",
+            includeHTML("www/Aula04-01.html")
     )
   )
 )
