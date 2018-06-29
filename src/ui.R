@@ -32,9 +32,21 @@ sidebar = dashboardSidebar(
              icon = icon('line-chart'),
              tabName="aula02-04"
     ),
-    menuItem("SequÃªncias", 
+    menuItem("Sequências", 
              icon = icon('line-chart'),
              tabName="aula02-05"
+    ),
+    menuItem("Dados aleatórios", 
+             icon = icon('line-chart'),
+             tabName="aula03-01"
+    ),
+    menuItem("Controle de fluxos e funções", 
+             icon = icon('line-chart'),
+             tabName="aula03-02"
+    ),
+    menuItem("Environments", 
+             icon = icon('line-chart'),
+             tabName="aula03-03"
     )
   )
 )
@@ -64,6 +76,15 @@ body = dashboardBody(
     ),
     tabItem(tabName = "aula02-05",
             includeHTML("www/Aula02-05.html")
+    ),
+    tabItem(tabName = "aula03-01",
+            includeHTML("www/Aula03-01.html")
+    ),
+    tabItem(tabName = "aula03-02",
+            includeHTML("www/Aula03-02.html")
+    ),
+    tabItem(tabName = "aula03-03",
+            includeHTML("www/Aula03-03.html")
     )
   )
 )

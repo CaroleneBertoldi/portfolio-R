@@ -6,6 +6,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+####Objetivo:
+Demonstrar técnicas de geração de dados aleatórios ou aleatório a partir de um determinado dataset.
+
 ## Exercício gerando dados aleatórios para um modelo linear
 
 Gerar os dados para o modelo linear `y = B0 + B1x + e`, em que `Bo = 0.5`, `B1 = 2.0` e `e ~ N(0; 2²)`.
@@ -56,6 +59,4 @@ linhas.idx <- seq_len(nrow(airquality))
 linhas.sample <- sample(linhas.idx, 10)
 airquality[linhas.sample, ]
 ```
-
-## Exercício - Loop Acumulado
 

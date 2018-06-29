@@ -1,0 +1,88 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+####Objetivo:
+Explorar o conceito de `environments` do R.
+
+## Atribuição de variáveis entre Environments
+
+Criar uma função que:
+  1. Obtém o environment atual
+  2. Obtém o Global Environment
+  3. Imprima o environment atual
+  4. Imprima o Global Environment
+
+```{r exercicio01}
+
+func = function() {
+  global = .GlobalEnv
+  print("Global")
+  print(global)
+  
+  ataual = environment()
+  print("Atual")
+  print(ataual)
+}
+
+func()
+func()
+func()
+func()
+func()
+
+```
+
+Executar esta função 5 vezes.
+O endereço do Environment foi o mesmo em todas as execuções?
+
+>Observe que o environment local teve o seu endereço modificado a cada execução, porém o enviroment global permaneceu igual. Isso ocorre porque o R cria um enviment local novo para cada execução de uma função, porém o Global é um Environment que possui uma hierarquia maior, permanecendo com seu endereço de memória intacto.
+
+## Exercício para praticar o Debug
+
+É possível debugar função na linguagem R.
+A instrução `debug` é utilizada para iniciar o monitoramento de função, conforme exemplo abaixo na função de loop acumulados.
+
+```{r exercicio02}
+
+numeroPassageiros = function(dt) {
+  sum(as.array(dt))
+}
+
+debug(numeroPassageiros)
+
+numeroPassageiros(AirPassengers)
+```
+
+Para encerrar o monitoramento da função basta utilizar a instrução `undebug`.
+```{r}
+undebug(numeroPassageiros)
+
+numeroPassageiros(AirPassengers)
+```
+
+E se você deseja debugar a função apenas uma vez, utilize a instrução `debugonce`.
+```{r}
+debugonce(numeroPassageiros)
+
+numeroPassageiros(AirPassengers)
+numeroPassageiros(AirPassengers)
+```
+
+Outro exemplo de bug na função `func` utilizada acima para analisar os escopos dos Environments.
+
+```{r}
+debug(func)
+func()
+
+undebug(func)
+func()
+
+debugonce(func)
+func()
+func()
+```

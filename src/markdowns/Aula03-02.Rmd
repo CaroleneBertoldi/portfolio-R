@@ -1,0 +1,136 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+####Objetivo:
+Por em prática os conceitos de controle de fluxos (condicionais e loops) e criação de funções utilizando a linguagem R.
+
+## Exercício – Loop Acumulado
+
+1. Criar script que varre o dataset "AirPassengers".
+
+2. Crie um vetor que contenha o valor acumulado de passageiros ao longo do tempo.
+
+```{r exercicio01}
+
+passageiros = as.array(AirPassengers)
+
+totalPassageiros = 0;
+for (qnt in passageiros) {
+  totalPassageiros = totalPassageiros + qnt
+}
+
+totalPassageiros
+```
+
+>O exercício acima poderia ter utilizado while também. Daria o mesmo resultado. Foi utilizado for apenas por ser a solução mais comum quando é sabido o numero exato de iterações que o codigo executará, como no exemplo o tamanho do vetor.
+
+
+## Exercício – Fatorial
+
+Criar função Fatorial que retorna o fatorial de um número inteiro. Exemplo 4!
+
+```{r exercicio02}
+
+fatorial = function(n) {
+  if (n == 1) {
+    return (1)
+  }
+  
+  return (n * fatorial(n-1))
+}
+
+fatorial(4)
+```
+
+>Para resolução do execício de fatorial foi utilizada uma função recursiva.
+
+## Exercício – Fatorial
+
+Fazer uma função que recebe um vetor numérico e retorna seus valores invertidos.
+
+```{r exercicio03}
+
+inverteVetor = function(vet) {
+  rev(vet)
+}
+
+vet = c(44, 67 , 5, 47, 8, 1, 79, 128)
+inverteVetor(vet)
+```
+
+>Note que foi criada a função `inverteVetor()` que recebe um vetor como parametro e retorna o seu resultado invertendo a ordem dos dados inseridos no vetor. Assim qualquer vetor passado a função retornará um novo vetor com os dados invertidos do vetor passado por parãmetro.
+Duas curiosidade neste trecho de código:
+1. foi utilizada a função `rev` disponibilizada pelo próprio R, sem necessidade de lógica nenhuma ou loop para inversão (o que no fim descaracteriza o propósito da nossa propria função, porque a `rev` faz exatamente o que a nossa se propõe a fazer).
+para inverter os dados do vetor.
+2. Em funções R não são necessárias uso de palavras chave para retorno de funções como na maioria das outras lingugens. Uma função sem a palavra chave `return` retorna automaticamente o resultado da sua última linha, no nosso caso `rev(vet)`
+
+## Exercício - AirPassangers com funções
+
+```{r exercicio04}
+
+numeroPassageiros = function(dt) {
+  sum(as.array(dt))
+}
+
+numeroPassageiros(AirPassengers)
+```
+
+>Note que foi possível obter o mesmo resultado mas agora podendo ser aplicado a outros datasets. Note também que o uso da função `sum` dispensou o loop no vetor.
+
+## Exercício - Parâmetros
+
+Passar como parâmetro a coluna `mpg` da tabela `mtcars`. Perceberam que pode ser acessada por mtcars$mpg ?
+
+```{r exercicio05}
+
+exibirMarcas = function(m) {
+ m
+}
+
+exibirMarcas(mtcars$mpg)
+```
+
+>Sim, é possível acessar uma coluna de um dataset através do `$`, e inclusive passa-la por parâmetro a uma função.
+
+## Exercício - "Para raciocinar..."
+
+O que é a variável i? Uma função ou um número?
+O que é esperado da “Execução 1”?
+E da “Execução 2”?
+
+```{r exercicio06}
+
+h <- function() {
+  x <- 10
+  function() {
+    x
+  }
+}
+
+i <- h()
+```
+
+Compare as duas execuções do trecho de código acima:
+
+**Execução 1:**
+```{r }
+i()
+```
+**Execução 2:**
+```{r }
+x <- 20
+i()
+```
+E se você for um pouco mais curioso, execute uma terceira vez, sem os parênteses.
+
+```{r }
+i
+```
+
+>Sim, em R é possível uma variável armazenar uma função!!
+A variável i armazenou a função h(), então não importa quantas vezes for executada, mesmo atribuindo ouros valores a x, porque ela passará novamente na atribuição x = 10 e exibirá novamente este resultado.
