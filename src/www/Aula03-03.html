@@ -142,27 +142,27 @@ func()</code></pre>
 <pre><code>## [1] &quot;Global&quot;
 ## &lt;environment: R_GlobalEnv&gt;
 ## [1] &quot;Atual&quot;
-## &lt;environment: 0x00000000074b3e68&gt;</code></pre>
+## &lt;environment: 0x0000000006b9d970&gt;</code></pre>
 <pre class="r"><code>func()</code></pre>
 <pre><code>## [1] &quot;Global&quot;
 ## &lt;environment: R_GlobalEnv&gt;
 ## [1] &quot;Atual&quot;
-## &lt;environment: 0x0000000008a923b8&gt;</code></pre>
+## &lt;environment: 0x0000000008ac5468&gt;</code></pre>
 <pre class="r"><code>func()</code></pre>
 <pre><code>## [1] &quot;Global&quot;
 ## &lt;environment: R_GlobalEnv&gt;
 ## [1] &quot;Atual&quot;
-## &lt;environment: 0x00000000074742f0&gt;</code></pre>
+## &lt;environment: 0x00000000095ab420&gt;</code></pre>
 <pre class="r"><code>func()</code></pre>
 <pre><code>## [1] &quot;Global&quot;
 ## &lt;environment: R_GlobalEnv&gt;
 ## [1] &quot;Atual&quot;
-## &lt;environment: 0x00000000080c40f0&gt;</code></pre>
+## &lt;environment: 0x000000000801cd10&gt;</code></pre>
 <pre class="r"><code>func()</code></pre>
 <pre><code>## [1] &quot;Global&quot;
 ## &lt;environment: R_GlobalEnv&gt;
 ## [1] &quot;Atual&quot;
-## &lt;environment: 0x0000000007fb9c88&gt;</code></pre>
+## &lt;environment: 0x00000000076aeb50&gt;</code></pre>
 <p>Executar esta função 5 vezes. O endereço do Environment foi o mesmo em todas as execuções?</p>
 <blockquote>
 <p>Observe que o environment local teve o seu endereço modificado a cada execução, porém o enviroment global permaneceu igual. Isso ocorre porque o R cria um enviment local novo para cada execução de uma função, porém o Global é um Environment que possui uma hierarquia maior, permanecendo com seu endereço de memória intacto.</p>
@@ -224,14 +224,14 @@ func()</code></pre>
 ## debug em &lt;text&gt;#8: print(&quot;Atual&quot;)
 ## [1] &quot;Atual&quot;
 ## debug em &lt;text&gt;#9: print(ataual)
-## &lt;environment: 0x0000000009890408&gt;
+## &lt;environment: 0x000000000b4d5d18&gt;
 ## exiting from: func()</code></pre>
 <pre class="r"><code>undebug(func)
 func()</code></pre>
 <pre><code>## [1] &quot;Global&quot;
 ## &lt;environment: R_GlobalEnv&gt;
 ## [1] &quot;Atual&quot;
-## &lt;environment: 0x000000000b66ead8&gt;</code></pre>
+## &lt;environment: 0x0000000009860d80&gt;</code></pre>
 <pre class="r"><code>debugonce(func)
 func()</code></pre>
 <pre><code>## debugging in: func()
@@ -252,13 +252,24 @@ func()</code></pre>
 ## debug em &lt;text&gt;#8: print(&quot;Atual&quot;)
 ## [1] &quot;Atual&quot;
 ## debug em &lt;text&gt;#9: print(ataual)
-## &lt;environment: 0x000000000b7bc918&gt;
+## &lt;environment: 0x000000000b7e08e0&gt;
 ## exiting from: func()</code></pre>
 <pre class="r"><code>func()</code></pre>
 <pre><code>## [1] &quot;Global&quot;
 ## &lt;environment: R_GlobalEnv&gt;
 ## [1] &quot;Atual&quot;
-## &lt;environment: 0x000000000b828658&gt;</code></pre>
+## &lt;environment: 0x000000000b850450&gt;</code></pre>
+</div>
+<div id="curiosidade-o-que-acontece-ao-se-tentar-debugar-uma-funcao-built-in" class="section level2">
+<h2>Curiosidade: O que acontece ao se tentar debugar uma função Built-In?</h2>
+<p>Uma função Built-In é uma função que pertence ao pacote nativo do R, cujo código está em escrito em C++ ou Fortran O R possui muitas funções Built-In, basicamente todas as suas funções matematicas. Por exemplo vamos debugar a função <code>sqrt</code>, a função R que retorna a raiz quadrada de um número.</p>
+<pre class="r"><code>debug(sqrt)
+
+sqrt(4)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<blockquote>
+<p>Neste caso a função não pode ser debugada pois código não está disponivel a visualização em linguagem R.</p>
+</blockquote>
 </div>
 
 

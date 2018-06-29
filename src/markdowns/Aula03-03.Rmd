@@ -86,3 +86,16 @@ debugonce(func)
 func()
 func()
 ```
+
+## Curiosidade: O que acontece ao se tentar debugar uma função Built-In?
+
+Uma função Built-In é uma função que pertence ao pacote nativo do R, cujo código está em escrito em C++ ou Fortran
+O R possui muitas funções Built-In, basicamente todas as suas funções matematicas.
+Por exemplo vamos debugar a função `sqrt`, a função R que retorna a raiz quadrada de um número.
+
+```{r}
+debug(sqrt)
+
+sqrt(4)
+```
+>Neste caso a função não pode ser debugada pois código não está disponivel a visualização em linguagem R.
