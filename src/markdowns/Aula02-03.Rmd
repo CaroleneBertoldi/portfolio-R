@@ -1,0 +1,73 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercícios sobre Special Values
+
+####Objetivo:
+Demostrar casos especiais de tipos de valores que R pode apresentar e como identifica-los.
+
+####Instruções:
+1. Criar 5 variáveis. Cada uma com um tipo dos valores especiais (+Inf e -Inf)
+2. Tentar criar um vetor com as 5 variáveis.
+   Foi possível?
+3. Verificar os valores das variáveis e vetor através das funções
+
+```{r exercicio8}
+v1 = NA
+v2 = NaN
+v3 = NULL
+v4 = Inf
+v5 = -Inf
+
+vall = c(v1, v2, v3, v4, v5)
+
+#V1
+is.na(v1)
+is.nan(v1)
+is.null(v1)
+is.infinite(v1)
+is.finite(v1)
+
+#V2
+is.na(v2)
+is.nan(v2)
+is.null(v2)
+is.infinite(v2)
+is.finite(v2)
+
+#V3
+is.na(v3)
+is.nan(v3)
+is.null(v3)
+is.infinite(v3)
+is.finite(v3)
+
+#V4
+is.na(v4)
+is.nan(v4)
+is.null(v4)
+is.infinite(v4)
+is.finite(v4)
+
+#V5
+is.na(v5)
+is.nan(v5)
+is.null(v5)
+is.infinite(v5)
+is.finite(v5)
+
+#Vall
+is.na(vall)
+is.nan(vall)
+is.null(vall)
+is.infinite(vall)
+is.finite(vall)
+```
+ 
+>Sim, é possivel criar um vetor com valores especiais.
+Pelas funções de verificação de tipos especiais é possível identificar a qual tipo especial a variável se aplica e quando excutadas com uma variavel que é um vetor a função retorma a verificação de todos os elementos do vetor.

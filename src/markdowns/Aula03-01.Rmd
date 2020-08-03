@@ -1,0 +1,62 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+####Objetivo:
+Demonstrar técnicas de geração de dados aleatórios ou aleatório a partir de um determinado dataset.
+
+## Exercício gerando dados aleatórios para um modelo linear
+
+Gerar os dados para o modelo linear `y = B0 + B1x + e`, em que `Bo = 0.5`, `B1 = 2.0` e `e ~ N(0; 2²)`.
+
+  1. Considerar 100 observações
+  2. Lembrar de "colocar a semente"
+  3. Plotar o resultado
+
+```{r exercicio1}
+#install.packages("plotly")
+library(plotly)
+
+set.seed(25)
+x = rnorm(100)
+e = rnorm(100, 0, 2)
+y = 0.5 + 2 * x + e
+plot_ly( x = x, y = y, type = "scatter" )
+```
+
+## Exercício: Amostra de uma base de dados
+
+Avaliar o data.frame "airquality"
+
+  1. Obter as dimensões deste data.frame
+  2. Obter o resumo de todas as colunas
+  3. Exibir uma amostra dos 10 primeiros registros
+  4. Exibir uma amostra com 10 linhas aleatórias
+  
+A função `dim` pode ser utilizada para verificar as dimensões de uma matriz ou data frame, retornando o número de linhas e colunas. Portanto no data frame *airquality* são encontradas 153 linhas e 6 colunas.
+```{r exercicio2.1}
+dim(airquality)
+```
+
+A função `summary` retorna um resumo dos dados por coluna.
+```{r exercicio2.2}
+summary(airquality)
+```
+
+A função `head` pode ser utilizada para exibir as primeiras linhas de um data frame ou matriz. Para definir o número de linhas que deverá ser retornado é utilizado o paramêtro n.
+```{r exercicio2.3}
+head(airquality, n = 10)
+```
+
+E para exibir uma amostra aleatronia com dados de um data frame podemos utilizar o `sample` para retirar dados de uma sequencia aletoria gerada a partir do data frame em questão da seguinte maneira:
+```{r exercicio2.4}
+set.seed(20)
+linhas.idx <- seq_len(nrow(airquality))
+linhas.sample <- sample(linhas.idx, 10)
+airquality[linhas.sample, ]
+```
+
